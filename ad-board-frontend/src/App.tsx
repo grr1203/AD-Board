@@ -8,14 +8,28 @@ function App() {
   const [filePath, setFilePath] = useState<string>('');
   const [fileType, setFileType] = useState<string>('');
 
+  // default
   useEffect(() => {
     (async () => {
-      const res = await fetch(`${SERVER_URL}/file/main`);
+      const res = await fetch(`${SERVER_URL}/ad/main`);
       const data = await res.json();
 
       setFilePath(data.path);
       setFileType(getFileType(data.path));
     })();
+  }, []);
+
+   // Server-Sent Events (SSE)로 서버의 이벤트 처리
+   useEffect(() => {
+    const eventSource = new EventSource(`${SERVER_URL}/events`);
+    eventSource.onmessage = function (event) {
+      console.log('Received message:', event.data);
+      if (event.data === 'refresh') window.location.reload(); // 페이지 새로고침
+    };
+    eventSource.onerror = (error) => console.error('SSE Error:', error);
+
+    // 컴포넌트가 언마운트될 때 SSE 연결 해제
+    return () => eventSource.close();
   }, []);
 
   return (
