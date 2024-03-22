@@ -3,7 +3,7 @@ import morgan from 'morgan';
 import cors from 'cors';
 import path from 'path';
 import Database from 'better-sqlite3';
-import { changeAdMain, getAdList, getAdMain } from './controllers/adController';
+import { changeAdMain, deleteAd, getAdList, getAdMain } from './controllers/adController';
 import { fileUpload } from './middleware/upload';
 
 const app: express.Application = express();
@@ -50,6 +50,7 @@ app.get('/ad/main', getAdMain);
 app.post('/ad', fileUpload.single('file'), (_, res: Response) => res.json());
 app.get('/ad/list', getAdList);
 app.put('/ad/main', changeAdMain);
+app.delete('/ad', deleteAd);
 
 // Server Run
 app.listen(port, () => console.log(`App is listening on port ${port} \n`));

@@ -40,3 +40,16 @@ export const changeAdMain = async (req: any, res: Response) => {
 
   return res.json({});
 };
+
+// 서버에 업로드되어 있는 파일 삭제
+export const deleteAd = async (req: any, res: Response) => {
+  const { fileName } = req.body;
+  console.log('delete fileName: ', fileName);
+  try {
+    fs.unlinkSync(`src/dist/${fileName}`);
+    return res.json({ result: 'success' });
+  } catch (error) {
+    console.error('Error deleting file:', error);
+    return res.status(500);
+  }
+};
