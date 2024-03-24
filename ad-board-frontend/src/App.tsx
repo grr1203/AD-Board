@@ -2,7 +2,7 @@ import './reset.css';
 import './App.css';
 import { useEffect, useState } from 'react';
 
-const SERVER_URL = 'http://localhost:4000';
+const SERVER_URL = 'http://127.0.0.1';
 
 function App() {
   const [filePath, setFilePath] = useState<string>('');

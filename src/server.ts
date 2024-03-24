@@ -7,7 +7,7 @@ import { changeAdMain, deleteAd, getAdList, getAdMain } from './controllers/adCo
 import { fileUpload } from './middleware/upload';
 
 const app: express.Application = express();
-const port: number = 4000;
+const port: number = 80;
 
 app.use(cors());
 app.use(json());
