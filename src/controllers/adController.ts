@@ -13,7 +13,7 @@ export const getAdMain = async (req: any, res: Response) => {
 // 서버에 업로드되어 있는 광고 파일(영상, 이미지) 목록 반환
 export const getAdList = async (req: any, res: Response) => {
   try {
-    const files = fs.readdirSync('src/dist/');
+    const files = fs.readdirSync(`${__dirname}/../dist/`);
     const mediaFiles = files.filter((file) => {
       const ext = path.extname(file).toLowerCase();
       return ['.jpg', '.jpeg', '.png', '.gif', '.mp4', '.avi', '.mov'].includes(ext);
@@ -46,7 +46,7 @@ export const deleteAd = async (req: any, res: Response) => {
   const { fileName } = req.body;
   console.log('delete fileName: ', fileName);
   try {
-    fs.unlinkSync(`src/dist/${fileName}`);
+    fs.unlinkSync(`${__dirname}/../dist/${fileName}`);
     return res.json({ result: 'success' });
   } catch (error) {
     console.error('Error deleting file:', error);
