@@ -17,5 +17,5 @@ exec('forever start build/server.js', (error, stdout, stderr) => {
       console.log(`browser 실행 결과: ${stdout}`);
       console.error(`browser 실행 오류: ${stderr}`);
     });
-  }, 5000);
+  }, 3000);
 });
