@@ -2,8 +2,6 @@ import './reset.css';
 import './App.css';
 import { useEffect, useState } from 'react';
 
-const SERVER_URL = 'http://127.0.0.1';
-
 function App() {
   const [filePath, setFilePath] = useState<string>('');
   const [fileType, setFileType] = useState<string>('');
@@ -11,7 +9,8 @@ function App() {
   // default
   useEffect(() => {
     (async () => {
-      const res = await fetch(`${SERVER_URL}/ad/main`);
+      // console.log('SERVER_URL', SERVER_URL);
+      const res = await fetch(`/ad/main`);
       const data = await res.json();
 
       setFilePath(data.path);
@@ -19,9 +18,9 @@ function App() {
     })();
   }, []);
 
-   // Server-Sent Events (SSE)로 서버의 이벤트 처리
-   useEffect(() => {
-    const eventSource = new EventSource(`${SERVER_URL}/events`);
+  // Server-Sent Events (SSE)로 서버의 이벤트 처리
+  useEffect(() => {
+    const eventSource = new EventSource(`/events`);
     eventSource.onmessage = function (event) {
       console.log('Received message:', event.data);
       if (event.data === 'refresh') window.location.reload(); // 페이지 새로고침
