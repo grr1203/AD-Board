@@ -1,3 +1,3 @@
-CREATE TABLE IF NOT EXISTS tb_file (name TEXT NOT NULL);
+CREATE TABLE IF NOT EXISTS tb_file (idx INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL);
 
-INSERT INTO tb_file (name) VALUES ('sample.mp4');
+INSERT INTO tb_file (idx, name) VALUES (1, 'sample.mp4');

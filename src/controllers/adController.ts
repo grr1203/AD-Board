@@ -4,7 +4,7 @@ import path from 'path';
 
 // main page의 광고 파일 이름 반환
 export const getAdMain = async (req: any, res: Response) => {
-  const query = `SELECT * FROM tb_file WHERE id = 1`;
+  const query = `SELECT * FROM tb_file WHERE idx = 1`;
   const row = req.db.prepare(query).all(); // 조회시에는 all method 사용
   console.log('row', row);
   res.send({ path: row[0].name });
@@ -32,7 +32,7 @@ export const changeAdMain = async (req: any, res: Response) => {
   const { fileName } = req.body;
   const db = req.db;
 
-  const query = `UPDATE tb_file SET name = ? WHERE id = 1`;
+  const query = `UPDATE tb_file SET name = ? WHERE idx = 1`;
   db.prepare(query).run(fileName); // ? 를 fileName으로 바인딩
 
   // SSE로 연결되어 있는 클라이언트들 새로고침
