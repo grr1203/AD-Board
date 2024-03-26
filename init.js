@@ -37,7 +37,7 @@ async function goNewPage(browser) {
         browser = await startBrowser();
         await goNewPage(browser);
       }
-    }, 3000);
+    }, 5000);
   } catch (err) {
     console.error('browser error : ', err);
     if (browser) {
